@@ -1,1 +1,35 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Membership</title>
+    <style>
+        body { background-color: #e0e0e0; font-family: Arial; padding: 20px; }
+        .form-container { background-color: #a9cce3; padding: 20px; width: 400px; margin: 0 auto; border: 1px solid #4a6fa5;}
+        .field { margin-bottom: 15px; }
+        input[type="text"] { width: 90%; padding: 8px; }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Add Membership for Vendor</h2>
+    <div class="form-container">
+        <form method="POST">
+            <div class="field">
+                <label>Vendor ID:</label><br>
+                <input type="text" name="vendor_id" required>
+            </div>
+            <div class="field">
+                <label>Vendor Name:</label><br>
+                <input type="text" name="vendor_name" required>
+            </div>
+            <div class="field">
+                <label>Duration:</label><br>
+                <input type="radio" name="duration" value="6_months" checked> 6 Months<br>
+                <input type="radio" name="duration" value="1_year"> 1 Year<br>
+                <input type="radio" name="duration" value="2_years"> 2 Years<br>
+            </div>
+            <button type="submit" style="background-color: #4a6fa5; color: white; padding: 10px 20px; border:none;">Submit</button>
+            <a href="/admin/dashboard" style="margin-left: 10px;">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
