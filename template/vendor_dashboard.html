@@ -1,4 +1,62 @@
-<div style="background-color: #4a6fa5; color: white; padding: 20px; text-align: center;">
-    <h2>Welcome Vendor</h2>
-    <a href="/logout" style="color: white;">LogOut</a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vendor Dashboard</title>
+    <style>
+        body {
+            background-color: #4a6fa5; /* Solid blue background from wireframe */
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 80px;
+            margin: 0;
+        }
+        .welcome-banner {
+            background-color: #e0e0e0; /* Light grey */
+            color: #333;
+            width: 70%;
+            max-width: 800px;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 24px;
+            margin-bottom: 60px;
+        }
+        .button-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-btn {
+            background-color: #e0e0e0;
+            color: #333;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            min-width: 120px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        .nav-btn:hover {
+            background-color: #d0d0d0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="welcome-banner">
+        Welcome<br>Vendor
+    </div>
+
+    <div class="button-row">
+        <a href="#" class="nav-btn">Your Item</a> 
+        <a href="/vendor/item/add" class="nav-btn">Add New Item</a>
+        <a href="/vendor/orders" class="nav-btn">Transaction</a> 
+        <a href="/logout" class="nav-btn">LogOut</a>
+    </div>
+
+</body>
+</html>
