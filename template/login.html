@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Management System - Login</title>
+    <style>
+        body {
+            background-color: #e0e0e0; /* Light grey from wireframe */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 600px;
+            text-align: center;
+        }
+        .header-banner {
+            background-color: #a9cce3;
+            border: 1px solid #5499c7;
+            padding: 15px;
+            margin-bottom: 40px;
+            font-size: 20px;
+        }
+        .form-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 20px;
+        }
+        .label-btn {
+            background-color: #4a6fa5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            width: 100px;
+        }
+        .input-field {
+            background-color: #c9def1;
+            border: 1px solid #5499c7;
+            padding: 10px;
+            width: 300px;
+        }
+        .role-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .action-btn {
+            background-color: #808080;
+            color: black;
+            padding: 10px 30px;
+            border: 1px solid #333;
+            cursor: pointer;
+        }
+        .error { color: red; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-banner">
+        Event Management System
+    </div>
+
+    <div style="text-align: left; margin-bottom: 20px;">
+        <button class="label-btn">CHART</button>
+    </div>
+
+    <form method="POST" action="/login">
+        <div class="form-row">
+            <div class="label-btn">User Id</div>
+            <input type="text" name="user_id" class="input-field" required>
+        </div>
+        <div class="form-row">
+            <div class="label-btn">Password</div>
+            <input type="password" name="password" class="input-field" required>
+        </div>
+        
+        <div class="form-row" style="margin-top: 20px;">
+             <label>Select Role:</label>
+             <select name="role" class="input-field" style="width: 150px;">
+                 <option value="Admin">Admin</option>
+                 <option value="Vendor">Vendor</option>
+                 <option value="User">User</option>
+             </select>
+        </div>
+
+        <div class="role-buttons">
+            <button type="reset" class="action-btn">Cancel</button>
+            <button type="submit" class="action-btn">Login</button>
+        </div>
+    </form>
+
+    {% if messages %}
+        <div class="error">
+            {% for message in messages %} {{ message }} {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
