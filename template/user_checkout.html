@@ -1,1 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { background-color: #e0e0e0; font-family: Arial; padding: 20px; display:flex; flex-direction:column; align-items:center;}
+        .total-box { background-color: #4a6fa5; color: white; padding: 20px; text-align: center; width: 300px; margin-bottom: 20px;}
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 600px; }
+        .input-box { background-color: #4a6fa5; color: white; padding: 10px; border: none; text-align: center;}
+        .input-box::placeholder { color: #ccc; }
+    </style>
+</head>
+<body>
 
+    <div class="total-box">
+        Item<br>
+        Grand Total &nbsp;&nbsp;&nbsp; {{ grand_total }}/-
+    </div>
+    <div style="background-color: #4a6fa5; color:white; padding:10px 40px; margin-bottom: 30px;">Details</div>
+
+    <form method="POST" action="/user/checkout" style="display:flex; flex-direction:column; align-items:center;">
+        <div class="form-grid">
+            <input type="text" name="name" class="input-box" placeholder="Name" required>
+            <input type="text" name="number" class="input-box" placeholder="Number" required>
+            <input type="email" name="email" class="input-box" placeholder="E-mail" required>
+            
+            <select name="payment_method" class="input-box">
+                <option value="Cash">Cash</option>
+                <option value="UPI">UPI</option>
+            </select>
+
+            <input type="text" name="address" class="input-box" placeholder="Address" required>
+            <input type="text" name="state" class="input-box" placeholder="State" required>
+            <input type="text" name="city" class="input-box" placeholder="City" required>
+            <input type="text" name="pincode" class="input-box" placeholder="Pin Code" required>
+        </div>
+
+        <button type="submit" style="background-color: #4a6fa5; color: white; border: none; padding: 15px 50px; margin-top: 30px; cursor:pointer;">Order Now</button>
+    </form>
+</body>
+</html>
