@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { background-color: #e0e0e0; font-family: Arial; padding: 20px;}
+        .banner { background-color: #a9cce3; padding: 15px; text-align: center; border: 1px solid #4a6fa5; margin-bottom: 20px;}
+        .row { display: flex; justify-content: space-between; margin-bottom: 10px;}
+        .box { background-color: #4a6fa5; color: white; padding: 15px; width: 15%; text-align: center; }
+        .grand-total { background-color: #4a6fa5; color: white; padding: 15px; margin-top: 20px; display: flex; justify-content: space-between;}
+    </style>
+</head>
+<body>
+    <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+        <a href="/user/dashboard" style="background:white; padding:5px 10px; border:1px solid black; text-decoration:none;">Home</a>
+        <a href="/logout" style="background:white; padding:5px 10px; border:1px solid black; text-decoration:none;">LogOut</a>
+    </div>
 
+    <div class="banner">Shopping Cart</div>
+
+    <div class="row" style="font-weight: bold;">
+        <div class="box">Product Name</div>
+        <div class="box">Price</div>
+        <div class="box">Quantity</div>
+        <div class="box">Total Price</div>
+    </div>
+
+    {% for item in cart %}
+    <div class="row">
+        <div class="box">{{ item.product.name }}</div>
+        <div class="box">{{ item.product.price }}/-</div>
+        <div class="box">
+            <select style="width:50px;">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+        <div class="box">{{ item.product.price * item.quantity }}/-</div>
+    </div>
+    {% endfor %}
+
+    <div class="grand-total">
+        <span>Grand Total {{ grand_total }}/-</span>
+        <button style="background:white; border:none; padding:5px 15px;">Delete All</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/user/checkout" style="background:white; padding:10px 30px; border:1px solid black; text-decoration:none; color:black; font-weight:bold;">Proceed to CheckOut</a>
+    </div>
+</body>
+</html>
