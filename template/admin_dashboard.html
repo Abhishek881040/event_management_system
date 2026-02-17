@@ -1,1 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        body { background-color: #e0e0e0; font-family: Arial; padding: 20px; }
+        .menu-box { background-color: white; border: 1px solid #333; padding: 20px; width: 300px; margin: 0 auto; text-align: center; }
+        .btn { display: block; background-color: #4a6fa5; color: white; padding: 10px; margin: 10px 0; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div style="text-align: right;"><a href="/logout">LogOut</a></div>
+    <h2 style="text-align: center;">Maintenance Menu (Admin access only)</h2>
+    
+    <div class="menu-box">
+        <a href="/admin/membership/add" class="btn">Add Membership</a>
+        <a href="#" class="btn">Update Membership</a>
+        <a href="#" class="btn">Users Management</a>
+        <a href="#" class="btn">Vendor Management</a>
+    </div>
 
+    {% if messages %}
+        <p style="color: green; text-align:center;">
+            {% for message in messages %} {{ message }} {% endfor %}
+        </p>
+    {% endif %}
+</body>
+</html>
