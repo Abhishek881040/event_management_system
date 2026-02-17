@@ -1,1 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Membership</title>
+    <style>
+        body { background-color: #e0e0e0; font-family: Arial; padding: 20px; }
+        .form-container { background-color: #a9cce3; padding: 20px; width: 400px; margin: 0 auto; border: 1px solid #4a6fa5;}
+        .field { margin-bottom: 20px; }
+        input[type="text"] { width: 90%; padding: 8px; }
+        .radio-group { background: white; padding: 10px; border: 1px solid #333; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Update Membership Status</h2>
+    
+    <div class="form-container">
+        <form method="POST">
+            <div class="field">
+                <label><strong>Membership Number (Mandatory):</strong></label><br>
+                <input type="text" name="membership_number" required placeholder="Enter Membership ID to pull data">
+            </div>
+            
+            <div class="field">
+                <label><strong>Action:</strong></label><br>
+                
+                <div class="radio-group">
+                    <input type="radio" name="action" value="extend" checked> <b>Extend Membership</b><br><br>
+                    <div style="margin-left: 20px;">
+                        <input type="radio" name="duration" value="6_months" checked> 6 Months<br>
+                        <input type="radio" name="duration" value="1_year"> 1 Year<br>
+                        <input type="radio" name="duration" value="2_years"> 2 Years<br>
+                    </div>
+                </div>
 
+                <div class="radio-group" style="margin-top: 15px;">
+                    <input type="radio" name="action" value="cancel"> <b>Cancel Membership</b>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="submit" style="background-color: #4a6fa5; color: white; padding: 10px 30px; border:none; cursor:pointer;">Update</button>
+                <a href="/admin/dashboard" style="margin-left: 15px; color: #333;">Back</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
