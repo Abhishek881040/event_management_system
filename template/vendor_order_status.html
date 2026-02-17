@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { background-color: #e0e0e0; font-family: Arial; padding: 20px; text-align:center;}
+        .status-box { background-color: #4a6fa5; padding: 30px; width: 400px; margin: 0 auto; color: white; border-radius: 10px;}
+        .radio-btn { background-color: #a9cce3; padding: 10px; margin: 10px 0; color: black; display: flex; align-items: center; border-radius: 5px;}
+        .radio-btn input { margin-right: 15px; }
+    </style>
+</head>
+<body>
+    <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+        <a href="/vendor/dashboard" style="background:#4a6fa5; color:white; padding:10px; text-decoration:none;">Home</a>
+        <a href="/logout" style="background:#4a6fa5; color:white; padding:10px; text-decoration:none;">LogOut</a>
+    </div>
 
+    {% for order in orders %}
+    <form method="POST" action="/vendor/orders" class="status-box">
+        <h3>Update Order #{{ order.id }} (Total: {{ order.total }}/-)</h3>
+        <input type="hidden" name="order_id" value="{{ order.id }}">
+        
+        <div class="radio-btn">
+            <input type="radio" name="status" value="Received" {% if order.status == 'Received' %}checked{% endif %}> Received
+        </div>
+        <div class="radio-btn">
+            <input type="radio" name="status" value="Ready for Shipping" {% if order.status == 'Ready for Shipping' %}checked{% endif %}> Ready for Shipping
+        </div>
+        <div class="radio-btn">
+            <input type="radio" name="status" value="Out For Delivery" {% if order.status == 'Out For Delivery' %}checked{% endif %}> Out For Delivery
+        </div>
+        
+        <button type="submit" style="background:#4a6fa5; border:1px solid white; color:white; padding:10px 30px; margin-top:20px;">Update</button>
+    </form>
+    <br>
+    {% else %}
+        <h2>No orders received yet.</h2>
+    {% endfor %}
+
+    {% if messages %} <p style="color:green;">{% for m in messages %}{{m}}{% endfor %}</p> {% endif %}
+</body>
+</html>
