@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { background-color: #e0e0e0; font-family: Arial; padding: 20px;}
+        .header { background-color: #4a6fa5; color: white; padding: 15px; text-align: center; }
+        .nav-row { display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
+        .btn { background-color: #4a6fa5; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+        .product-card { background-color: #4a6fa5; color: white; padding: 20px; margin: 10px; width: 200px; text-align: center; display: inline-block; border-radius: 10px;}
+        .add-btn { background-color: white; color: black; padding: 5px 15px; border: none; cursor: pointer; margin-top: 10px;}
+    </style>
+</head>
+<body>
+    <div class="header">WELCOME USER</div>
+    
+    <div class="nav-row">
+        <select class="btn" style="border:none;">
+            <option>Vendor Category</option>
+            <option>Catering</option>
+            <option>Florist</option>
+            <option>Decoration</option>
+        </select>
+        <a href="/user/cart" class="btn">Cart</a>
+        <a href="#" class="btn">Guest List</a>
+        <a href="#" class="btn">Order Status</a>
+        <a href="/logout" class="btn">LogOut</a>
+    </div>
 
+    <div style="text-align: center;">
+        {% for product in products %}
+        <div class="product-card">
+            <h3>{{ product.name }}</h3>
+            <p>Price: {{ product.price }}/-</p>
+            <a href="/user/add_to_cart/{{ product.id }}"><button class="add-btn">Add to Cart</button></a>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if messages %} <p style="text-align:center; color:green;">{% for m in messages %}{{m}}{% endfor %}</p> {% endif %}
+</body>
+</html>
