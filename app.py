@@ -80,6 +80,26 @@ def update_membership():
 def vendor_dashboard():
     if session.get('role') != 'VENDOR': return redirect(url_for('login'))
     return render_template('vendor_dashboard.html')
+@app.route('/vendor/item/add', methods=['GET', 'POST'])
+def vendor_add_item():
+    if session.get('role') != 'VENDOR': return redirect(url_for('login'))
+    
+    if request.method == 'POST':
+        p_name = request.form.get('product_name')
+        p_price = request.form.get('product_price')
+        p_image = request.form.get('product_image') # FIX: Now capturing the image
+        
+        # FIX: Converted p_price to int() so Cart math works properly!
+        PRODUCTS.append({
+            'id': len(PRODUCTS) + 1,
+            'name': p_name, 
+            'price': int(p_price), 
+            'image': p_image,
+            'vendor_id': session['user_id']
+        })
+    
+    my_products = [p for p in PRODUCTS if p['vendor_id'] == session['user_id']]
+    return render_template('vendor_add_item.html', products=my_products)
 
 @app.route('/vendor/orders', methods=['GET', 'POST'])
 def vendor_order_status():
