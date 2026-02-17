@@ -57,6 +57,24 @@ def add_membership():
     # ... (Keep previous logic from earlier step) ...
     return render_template('admin_membership_add.html')
 
+@app.route('/admin/membership/update', methods=['GET', 'POST'])
+def update_membership():
+    if session.get('role') != 'ADMIN': return redirect(url_for('login'))
+    
+    if request.method == 'POST':
+        mem_number = request.form.get('membership_number')
+        action = request.form.get('action') # 'extend' or 'cancel'
+        extension_duration = request.form.get('duration') # default is 6_months
+        
+        # In a real database, you would query by 'mem_number' here.
+        if action == 'cancel':
+            flash(f'Membership {mem_number} successfully CANCELLED.')
+        else:
+            flash(f'Membership {mem_number} EXTENDED by {extension_duration.replace("_", " ")}.')
+            
+        return redirect(url_for('admin_dashboard'))
+        
+    return render_template('admin_membership_update.html')
 # ================= VENDOR ROUTES =================
 @app.route('/vendor/dashboard')
 def vendor_dashboard():
@@ -108,21 +126,33 @@ def checkout():
     grand_total = sum(item['product']['price'] * int(item['quantity']) for item in CART)
     
     if request.method == 'POST':
-        # Create order logic
-        payment_method = request.form.get('payment_method')
+        # Capture form details to pass to the Thank You page
+        order_details = {
+            'name': request.form.get('name'),
+            'number': request.form.get('number'),
+            'email': request.form.get('email'),
+            'payment_method': request.form.get('payment_method'),
+            'address': request.form.get('address'),
+            'state': request.form.get('state'),
+            'city': request.form.get('city'),
+            'pincode': request.form.get('pincode'),
+            'total': grand_total
+        }
+        
         new_order = {
             'id': len(ORDERS) + 1,
             'user_id': session['user_id'],
-            'vendor_id': CART[0]['product']['vendor_id'] if CART else '', # Simplification: assumes 1 vendor per order
+            'vendor_id': CART[0]['product']['vendor_id'] if CART else '', 
             'total': grand_total,
-            'payment': payment_method,
-            'status': 'Received' # Default state
+            'payment': order_details['payment_method'],
+            'status': 'Received' 
         }
         ORDERS.append(new_order)
-        CART.clear() # Empty the cart after checkout
-        return render_template('user_thank_you.html', total=grand_total)
+        CART.clear() # Empty the cart
+        
+        # Pass the details to the popup screen
+        return render_template('user_thank_you.html', details=order_details)
         
     return render_template('user_checkout.html', grand_total=grand_total)
-
 if __name__ == '__main__':
     app.run(debug=True)
