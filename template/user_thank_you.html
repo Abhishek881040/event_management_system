@@ -1,1 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thank You - Order Confirmed</title>
+    <style>
+        body { background-color: #e0e0e0; font-family: Arial; display:flex; flex-direction:column; align-items:center; padding-top: 50px;}
+        h4, h3 { margin: 5px; text-align: center; }
+        .total-box { background-color: #4a6fa5; color: white; padding: 15px; width: 300px; text-align: center; margin: 20px 0; border-radius: 5px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 500px; }
+        .info-box { background-color: #4a6fa5; color: white; padding: 15px; text-align: center; border-radius: 5px; }
+        .continue-btn { background-color: #4a6fa5; color: white; padding: 15px 40px; border: none; margin-top: 30px; border-radius: 5px; cursor: pointer; text-decoration: none; font-weight: bold;}
+    </style>
+</head>
+<body>
 
+    <h4>PopUp</h4>
+    <h3>THANK YOU</h3>
+
+    <div class="total-box">
+        Total Amount: {{ details.total }}/-
+    </div>
+
+    <div class="grid">
+        <div class="info-box">{{ details.name }}</div>
+        <div class="info-box">{{ details.number }}</div>
+        
+        <div class="info-box">{{ details.email }}</div>
+        <div class="info-box">{{ details.payment_method }}</div>
+        
+        <div class="info-box">{{ details.address }}</div>
+        <div class="info-box">{{ details.state }}</div>
+        
+        <div class="info-box">{{ details.city }}</div>
+        <div class="info-box">{{ details.pincode }}</div>
+    </div>
+
+    <a href="/user/dashboard" class="continue-btn">Continue Shopping</a>
+
+</body>
+</html>
